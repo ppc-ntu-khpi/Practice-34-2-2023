@@ -17,8 +17,10 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/ban-ts-comment": "warn",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-non-null-asserted-optional-chain": "off"
+    "@typescript-eslint/no-non-null-assertion": "warn",
+    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "warn"
   }
 }

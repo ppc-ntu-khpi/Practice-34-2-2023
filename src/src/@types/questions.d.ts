@@ -1,10 +1,10 @@
 export interface IQuiz {
   questions: IQuestion[];
-  currentQuestion: IQuestion;
+  currentQuestion: IQuestion | null;
   questionsAnswered: number;
   correctAnswers: number;
   isFinished: boolean;
-  timeElapsed: string;
+  timeElapsed: number;
 }
 
 export interface IQuestion {
@@ -17,4 +17,5 @@ export interface IQuestion {
     error: string;
   };
   backgroundPicture: string;
+  hexPalette: string;
 }

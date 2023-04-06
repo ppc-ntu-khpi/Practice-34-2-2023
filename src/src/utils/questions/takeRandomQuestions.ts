@@ -1,6 +1,10 @@
 import { IQuestion } from '../../@types/questions';
+import { QUESTIONS_LIMIT } from '../../constants/quiz';
 
-export const takeRandomQuestions = (questions: IQuestion[], limit = 5) => {
+export const takeRandomQuestions = (
+  questions: IQuestion[],
+  limit = QUESTIONS_LIMIT,
+) => {
   if (limit > questions.length) limit = questions.length;
   const shuffledQuestions = [...questions];
   for (let i = shuffledQuestions.length - 1; i > 0; i--) {
@@ -10,5 +14,5 @@ export const takeRandomQuestions = (questions: IQuestion[], limit = 5) => {
       shuffledQuestions[i],
     ];
   }
-  return shuffledQuestions.slice(0, limit || 5);
+  return shuffledQuestions.slice(0, limit);
 };
