@@ -3,15 +3,23 @@ import './App.css';
 import { Layout } from './components/layout/Layout';
 import { Quiz } from './components/screens/Quiz/Quiz';
 import { ColorProvider } from './components/context/ColorContext';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-export default App;
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Quiz />,
+  },
+]);
 
 function App() {
   return (
     <ColorProvider>
       <Layout>
-        <Quiz></Quiz>
+        <RouterProvider router={router} />
       </Layout>
     </ColorProvider>
   );
 }
+
+export default App;

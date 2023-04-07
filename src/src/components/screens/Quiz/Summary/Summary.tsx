@@ -16,6 +16,7 @@ import { formatTime } from '../../../../utils/questions/formatTime';
 import { hexToRGB } from '../../../../utils/color/hexToRGB';
 import { ColorContext } from '../../../context/ColorContext';
 import { DEFAULT_HOVER_COLOR, DEFAULT_QUIZ } from '../../../../constants/quiz';
+import { Link as RouterLink } from 'react-router-dom';
 
 type TProps = {
   quiz: IQuiz;
@@ -26,13 +27,13 @@ type TProps = {
 export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
   const { color } = useContext(ColorContext);
 
-  const handleCLick = (fullQuizReset: boolean) => {
+  const handleClick = (fullQuizReset: boolean) => {
     if (fullQuizReset) {
       setQuizData(DEFAULT_QUIZ);
       setHasStarted.off();
       return;
     }
-    setQuizData(DEFAULT_QUIZ);
+    setQuizData({ ...DEFAULT_QUIZ, questions: quiz.questions });
     setHasStarted.on();
   };
 
@@ -130,7 +131,8 @@ export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
               <Link
                 key={text}
                 href="/"
-                onClick={() => handleCLick(i === 1)}
+                as={RouterLink}
+                onClick={() => handleClick(i === 1)}
                 style={{ textDecoration: 'none' }}>
                 <Button
                   w="xs"

@@ -1,15 +1,22 @@
-import { FC, useContext } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import { Button, Divider, Flex, Heading, Text } from '@chakra-ui/react';
 import { ColorContext } from '../../../context/ColorContext';
 import { hexToRGB } from '../../../../utils/color/hexToRGB';
-import { DEFAULT_HOVER_COLOR } from '../../../../constants/quiz';
+import {
+  DEFAULT_HOVER_COLOR,
+  INTRODUCTION_COLOR,
+} from '../../../../constants/quiz';
 
 type TProps = {
   startQuiz: () => void;
 };
 
 export const Introduction: FC<TProps> = ({ startQuiz }) => {
-  const { color } = useContext(ColorContext);
+  const { color, setColor } = useContext(ColorContext);
+
+  useEffect(() => {
+    setColor(INTRODUCTION_COLOR);
+  }, []);
 
   return (
     <Flex

@@ -19,10 +19,6 @@ export const Quiz: FC = () => {
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [quizData, setQuizData] = useState<IQuiz>(DEFAULT_QUIZ);
 
-  // useEffect(() => {
-  //   console.log('Quiz renewed: ', quizData);
-  // }, [quizData]);
-
   const takeCurrentImage = () => {
     if (!hasStarted) return '/introduction.png';
     if (quizData.isFinished) return '/summary.png';
@@ -30,24 +26,27 @@ export const Quiz: FC = () => {
   };
 
   useEffect(() => {
-    QuestionsService.getAllQuestions().then((questions) => {
-      const randomizedQuestions = takeRandomQuestions(
-        questions,
-        QUESTIONS_LIMIT,
-      );
-      setQuizData((prev) => ({
-        ...prev,
-        questions: randomizedQuestions,
-        currentQuestion: randomizedQuestions[0],
-      }));
-    });
-  }, []);
+    if (hasStarted) {
+      QuestionsService.getAllQuestions().then((questions) => {
+        const randomizedQuestions = takeRandomQuestions(
+          questions,
+          QUESTIONS_LIMIT,
+        );
+        setQuizData((prev) => ({
+          ...prev,
+          questions: randomizedQuestions,
+          currentQuestion: randomizedQuestions[0],
+        }));
+      });
+    }
+  }, [hasStarted, quizData.isFinished]);
 
   useEffect(() => {
     let timer = 0;
-    if (hasStarted)
+    if (hasStarted && !quizData.isFinished) {
+      setTimeElapsed(0);
       timer = setInterval(() => setTimeElapsed((prev) => prev + 1), 1000);
-    if (quizData.isFinished) {
+    } else if (quizData.isFinished) {
       clearInterval(timer);
       setQuizData((prev) => ({ ...prev, timeElapsed }));
     }
@@ -78,11 +77,11 @@ export const Quiz: FC = () => {
             setHasStarted={setHasStarted}></Summary>
         ) : !hasStarted ? (
           <Introduction startQuiz={setHasStarted.toggle}></Introduction>
-        ) : (
+        ) : quizData.questions.length > 0 && quizData.currentQuestion ? (
           <Questions
             quizData={quizData}
             setQuizData={setQuizData}></Questions>
-        )}
+        ) : null}
       </Box>
     </Box>
   );
