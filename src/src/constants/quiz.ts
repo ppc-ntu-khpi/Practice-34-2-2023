@@ -1,8 +1,11 @@
 // Configuration
 import { IQuiz } from '../@types/questions';
 
-export const MODAL_TIMEOUT = 10;
-export const QUESTIONS_LIMIT = 2;
+export const MODAL_TIMEOUT = 15;
+export const QUESTIONS_LIMIT = 5;
+
+export const PHONE_NUMBER = '+380993333390';
+export const EMAIL = 'suportppfkquiz@gmail.com';
 
 export const DEFAULT_QUIZ: IQuiz = {
   questions: [],

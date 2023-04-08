@@ -69,13 +69,19 @@ export const Modal: FC<TProps> = ({
         ).toString()}, 0.8)`}
         color="white"
         borderRadius="25px"
-        height="60%">
-        <CardHeader>
+        px={{ base: 1 }}
+        mx={3}
+        //h="40%"
+        //height={{ base: '80%', sm: '80%', md: '80%' }}
+      >
+        <CardHeader px={{ base: 0, sm: 3 }}>
           <Flex
+            flexDirection={{ base: 'column', sm: 'row' }}
             justifyContent="space-between"
             alignItems="center">
             <CircularProgress
-              value={timeLeft * 10}
+              max={MODAL_TIMEOUT}
+              value={timeLeft}
               size="70px"
               trackColor="transparent"
               //color={isAnswerCorrect ? SUCCESS_COLOR : ERROR_COLOR}
@@ -83,7 +89,9 @@ export const Modal: FC<TProps> = ({
               thickness="7px">
               <CircularProgressLabel>{timeLeft}</CircularProgressLabel>
             </CircularProgress>
-            <Heading>
+            <Heading
+              textAlign="center"
+              my={{ base: 3, sm: 0 }}>
               {isAnswerCorrect
                 ? 'Правильна відповідь!'
                 : 'Неправильна відповідь!'}
@@ -106,10 +114,11 @@ export const Modal: FC<TProps> = ({
           display="flex"
           justifyContent="center"
           alignItems="center"
-          h="full">
+          h="full"
+          py={{ base: 15, sm: 20 }}>
           <Text
             fontWeight="bold"
-            fontSize="2xl">
+            fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }}>
             {interestingFacts[factKey]}
           </Text>
         </CardBody>

@@ -1,5 +1,5 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import { Box, useBoolean } from '@chakra-ui/react';
+import { Box, Flex, useBoolean } from '@chakra-ui/react';
 import { IQuiz } from '../../../@types/questions';
 import { QuestionsService } from '../../../services/QuestionsService';
 import { takeRandomQuestions } from '../../../utils/questions/takeRandomQuestions';
@@ -24,6 +24,13 @@ export const Quiz: FC = () => {
     if (quizData.isFinished) return '/summary.png';
     return quizData.currentQuestion?.backgroundPicture;
   };
+
+  // useEffect(() => {
+  //   document.body.style.backgroundImage = `url(${takeCurrentImage()})`;
+  //   document.body.style.backgroundRepeat = 'no-repeat';
+  //   document.body.style.backgroundSize = 'cover';
+  //   //document.body.style.backdropFilter = 'blur(6px)';
+  // }, [hasStarted, quizData.isFinished, quizData.currentQuestion]);
 
   useEffect(() => {
     if (hasStarted) {
@@ -62,14 +69,24 @@ export const Quiz: FC = () => {
 
   return (
     <Box
-      h="100vh"
+      //height="100%"
+      // display="flex"
+      // flexDirection="column"
+      // flex="1"
+      minHeight="100vh"
       backgroundImage={takeCurrentImage()}
       backgroundSize="cover"
       backgroundPosition="center">
-      <Box
-        backdropFilter="blur(6px) brightness(90%)"
-        h="100vh"
-        py={16}>
+      <Flex
+        flexDirection="column"
+        alignItems="cnter"
+        justifyContent="center"
+        backdropFilter="auto"
+        backdropBlur="6px"
+        backdropBrightness="90%"
+        minHeight="100vh"
+        w="100%"
+        py={{ base: '120px', md: 0 }}>
         {quizData.isFinished ? (
           <Summary
             quiz={quizData}
@@ -82,7 +99,7 @@ export const Quiz: FC = () => {
             quizData={quizData}
             setQuizData={setQuizData}></Questions>
         ) : null}
-      </Box>
+      </Flex>
     </Box>
   );
 };

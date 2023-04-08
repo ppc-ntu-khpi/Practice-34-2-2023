@@ -9,7 +9,9 @@
 
 body {
   font-family: 'DIN Pro', sans-serif !important;
+  min-height: 100vh !important;
   color: white;
+  overflow-x: hidden;
 }
 
 @font-face {

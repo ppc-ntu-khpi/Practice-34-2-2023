@@ -44,7 +44,7 @@ export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
       alignItems="center"
       maxW={'3xl'}
       m="0 auto"
-      h="full">
+      h="100%">
       <Card
         backgroundColor={`rgba(${hexToRGB(
           color,
@@ -52,9 +52,10 @@ export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
         ).toString()}, 1)`}
         color="white"
         borderRadius="25px"
-        px={5}
-        py={6}>
-        <CardHeader>
+        mx={3}
+        px={{ base: 0, md: 5 }}
+        py={{ base: 0, md: 6 }}>
+        <CardHeader px={{ base: 0, sm: 3 }}>
           <Heading>
             <Flex
               alignItems="center"
@@ -63,26 +64,42 @@ export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
                 style={{
                   transform: 'scale(-1, 1)',
                   whiteSpace: 'nowrap',
-                }}>
+                }}
+                display={{ base: 'none', md: 'block' }}>
                 🎉🎉🎉
               </Box>
-              <Text fontSize="3xl">Вікторину завершено!</Text>
+              <Text
+                m="0 auto"
+                fontSize={{ base: '2xl', md: '3xl' }}>
+                Вікторину завершено!
+              </Text>
 
-              <Box style={{ whiteSpace: 'nowrap' }}>🎉🎉🎉</Box>
+              <Box
+                display={{ base: 'none', md: 'block' }}
+                style={{ whiteSpace: 'nowrap' }}>
+                🎉🎉🎉
+              </Box>
             </Flex>
           </Heading>
         </CardHeader>
 
-        <CardBody>
-          <Flex flexDirection="column">
+        <CardBody
+          py={{ base: 0, sm: 3 }}
+          px={{ base: 0, sm: 3 }}>
+          <Flex
+            flexDirection="column"
+            w={{ base: '90%', md: '100%' }}
+            m="0 auto">
             <Flex
               fontWeight="bold"
               alignItems="center"
-              justifyContent="space-between">
+              justifyContent="space-between"
+              flexDirection={{ base: 'column', md: 'row' }}>
               <Box
                 px={3}
                 py={5}
-                w="xs"
+                w="full"
+                mx={1}
                 bgColor="rgba(0, 0, 0, 0.3)"
                 borderRadius="10px">
                 <Text textAlign="center">
@@ -93,7 +110,9 @@ export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
               <Box
                 px={3}
                 py={5}
-                w="xs"
+                mt={{ base: 2, md: 0 }}
+                w="full"
+                mx={1}
                 bgColor="rgba(0, 0, 0, 0.3)"
                 borderRadius="10px">
                 <Text textAlign="center">
@@ -102,6 +121,7 @@ export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
               </Box>
             </Flex>
             <Text
+              fontSize={{ base: 'md' }}
               fontWeight="bold"
               mt={4}>
               Дякуємо вам за участь в нашій вікторині! Ми сподіваємось, що ви
@@ -122,21 +142,26 @@ export const Summary: FC<TProps> = ({ quiz, setQuizData, setHasStarted }) => {
             </Text>
           </Flex>
         </CardBody>
-        <CardFooter>
+        <CardFooter px={{ base: 0, sm: 3 }}>
           <Flex
-            justifyContent="space-evenly"
+            justifyContent="space-between"
             alignItems="center"
-            width="100%">
+            width="100%"
+            flexDirection={{ base: 'column', md: 'row' }}>
             {['Пройти ще раз', 'Повернутись на початок'].map((text, i) => (
               <Link
                 key={text}
+                w={{ base: '90%', md: '100%' }}
+                mx={1}
                 href="/"
                 as={RouterLink}
                 onClick={() => handleClick(i === 1)}
-                style={{ textDecoration: 'none' }}>
+                style={{ textDecoration: 'none' }}
+                mb={{ base: 2, md: 0 }}>
                 <Button
-                  w="xs"
-                  size="lg"
+                  w="100%"
+                  py={3}
+                  size={{ base: 'md', md: 'xl' }}
                   fontSize="xl"
                   backgroundColor="#79848F"
                   _hover={{

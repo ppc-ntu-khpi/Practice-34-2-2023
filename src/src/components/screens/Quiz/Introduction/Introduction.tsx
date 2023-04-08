@@ -23,17 +23,21 @@ export const Introduction: FC<TProps> = ({ startQuiz }) => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      maxW={'3xl'}
+      maxW={{ md: '2xl', lg: '3xl', xl: '4xl' }}
+      px={{ base: 3 }}
+      py={{ base: 10 }}
       h="full"
-      margin={'0 auto'}
+      margin="0 auto"
       color="white">
       <Heading
-        size="md"
+        size={{ base: 'sm', md: 'md' }}
+        textAlign="center"
         as="h2">
         Ласкаво просимо до нашої вікторини!
       </Heading>
       <Heading
-        size="xl"
+        size={{ base: 'md', sm: 'lg', md: 'xl' }}
+        textAlign="center"
         as="h1"
         mt={5}>
         Вікторина - Коледж та Полтавщина
@@ -43,10 +47,10 @@ export const Introduction: FC<TProps> = ({ startQuiz }) => {
         borderWidth="2px"
         borderRadius="25px"
         w="60%"
-        my={5}
+        my={{ base: 2, sm: 5 }}
       />
       <Text
-        fontSize="xl"
+        fontSize={{ base: 'sm', sm: 'md', md: 'lg', lg: 'xl' }}
         fontWeight="bold">
         Ви отримаєте п’ять запитань, які ми випадковим чином відібрали з десяти
         можливих. Кожен студент нашого освітнього закладу, ба навіть кожен
@@ -67,7 +71,7 @@ export const Introduction: FC<TProps> = ({ startQuiz }) => {
           'values-only',
         ).toString()}, 0.8)`}
         w="2xs"
-        mt={14}
+        mt={{ base: 4, sm: 14 }}
         size="lg"
         fontSize="2xl"
         _hover={{

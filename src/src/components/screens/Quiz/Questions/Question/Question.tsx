@@ -51,6 +51,8 @@ export const Question: FC<TProps> = ({
           justifyContent="center"
           alignItems="center"
           maxW={'3xl'}
+          w="full"
+          px={3}
           m="0 auto"
           h="full">
           <Card
@@ -71,7 +73,7 @@ export const Question: FC<TProps> = ({
                   mr={2}
                 />{' '}
                 <Text
-                  fontSize="lg"
+                  fontSize={{ base: 'md', sm: 'lg' }}
                   fontWeight="bold"
                   align="center">
                   {question.text}
@@ -122,11 +124,13 @@ export const Question: FC<TProps> = ({
                           'values-only',
                         ).toString()}, 0.8)`}
                         width="25px">
-                        <Text align="center">{index + 1}</Text>
+                        <Text textAlign="center">{index + 1}</Text>
                       </Box>
                       <Text
                         mx="auto"
-                        fontSize="md"
+                        textAlign="center"
+                        w="max-content"
+                        fontSize={{ base: 'sm', sm: 'md' }}
                         fontWeight="bold">
                         {option}
                       </Text>
