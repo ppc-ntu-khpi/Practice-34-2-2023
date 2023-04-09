@@ -52,6 +52,7 @@ export const Quiz: FC = () => {
     let timer = 0;
     if (hasStarted && !quizData.isFinished) {
       setTimeElapsed(0);
+      // @ts-ignore
       timer = setInterval(() => setTimeElapsed((prev) => prev + 1), 1000);
     } else if (quizData.isFinished) {
       clearInterval(timer);
@@ -69,10 +70,6 @@ export const Quiz: FC = () => {
 
   return (
     <Box
-      //height="100%"
-      // display="flex"
-      // flexDirection="column"
-      // flex="1"
       minHeight="100vh"
       backgroundImage={takeCurrentImage()}
       backgroundSize="cover"
