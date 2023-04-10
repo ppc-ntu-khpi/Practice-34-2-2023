@@ -9,8 +9,6 @@ type TProps = {
 
 export const Questions: FC<TProps> = ({ quizData, setQuizData }) => {
   const setNextQuestion = (answer: string) => {
-    //console.log('Method worked');
-
     const currentQuestion: IQuestion = { ...quizData.currentQuestion!, answer };
     const currentQuestionId = quizData.questions.findIndex(
       (question) => question.text === currentQuestion.text,

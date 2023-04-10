@@ -1,5 +1,6 @@
 import { FC, useContext, useEffect, useMemo, useState } from 'react';
 import {
+  Box,
   Card,
   CardBody,
   CardHeader,
@@ -16,17 +17,22 @@ import {
   ERROR_COLOR,
   ERROR_EMOJI,
   MODAL_TIMEOUT,
+  motionDefaults,
   SUCCESS_COLOR,
   SUCCESS_EMOJI,
 } from '../../../../../../constants/quiz';
 import { hexToRGB } from '../../../../../../utils/color/hexToRGB';
 import { ColorContext } from '../../../../../context/ColorContext';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type TProps = {
   question: IQuestion;
   isAnswerCorrect: boolean;
   setNextQuestion: () => void;
 };
+
+const ChakraCard = motion(Card);
+const ChakraBox = motion(Box);
 
 export const Modal: FC<TProps> = ({
   setNextQuestion,
@@ -62,7 +68,7 @@ export const Modal: FC<TProps> = ({
       maxW={'3xl'}
       m="0 auto"
       h="full">
-      <Card
+      <ChakraCard
         backgroundColor={`rgba(${hexToRGB(
           color,
           'values-only',
@@ -70,59 +76,64 @@ export const Modal: FC<TProps> = ({
         color="white"
         borderRadius="25px"
         px={{ base: 1 }}
-        mx={3}
-        //h="40%"
-        //height={{ base: '80%', sm: '80%', md: '80%' }}
-      >
-        <CardHeader px={{ base: 0, sm: 3 }}>
-          <Flex
-            flexDirection={{ base: 'column', sm: 'row' }}
-            justifyContent="space-between"
-            alignItems="center">
-            <CircularProgress
-              max={MODAL_TIMEOUT}
-              value={timeLeft}
-              size="70px"
-              trackColor="transparent"
-              //color={isAnswerCorrect ? SUCCESS_COLOR : ERROR_COLOR}
-              color="white"
-              thickness="7px">
-              <CircularProgressLabel>{timeLeft}</CircularProgressLabel>
-            </CircularProgress>
-            <Heading
-              textAlign="center"
-              my={{ base: 3, sm: 0 }}>
-              {isAnswerCorrect
-                ? 'Правильна відповідь!'
-                : 'Неправильна відповідь!'}
-              {emoji}
-            </Heading>
-            <IconButton
-              aria-label="Go to the next question"
-              onClick={setNextQuestion}
-              icon={
-                <ArrowForwardIcon
-                  w={8}
-                  h={8}
-                />
-              }
-              backgroundColor="transparent"></IconButton>
-          </Flex>
-        </CardHeader>
+        mx={3}>
+        <AnimatePresence mode="wait">
+          <ChakraBox
+            key={interestingFacts.success}
+            {...motionDefaults}>
+            <CardHeader px={{ base: 0, sm: 3 }}>
+              <Flex
+                flexDirection={{ base: 'column', sm: 'row' }}
+                justifyContent="space-between"
+                alignItems="center">
+                <CircularProgress
+                  max={MODAL_TIMEOUT}
+                  value={timeLeft}
+                  size="70px"
+                  trackColor="transparent"
+                  color="white"
+                  thickness="7px">
+                  <CircularProgressLabel>{timeLeft}</CircularProgressLabel>
+                </CircularProgress>
+                <Heading
+                  textAlign="center"
+                  my={{ base: 3, sm: 0 }}>
+                  {isAnswerCorrect
+                    ? 'Правильна відповідь!'
+                    : 'Неправильна відповідь!'}
+                  {emoji}
+                </Heading>
+                <IconButton
+                  aria-label="Go to the next question"
+                  onClick={setNextQuestion}
+                  icon={
+                    <ArrowForwardIcon
+                      w={8}
+                      h={8}
+                    />
+                  }
+                  backgroundColor="transparent"
+                  _hover={{
+                    backgroundColor: 'rgba(0,0,0,0.2)',
+                  }}></IconButton>
+              </Flex>
+            </CardHeader>
 
-        <CardBody
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          h="full"
-          py={{ base: 15, sm: 20 }}>
-          <Text
-            fontWeight="bold"
-            fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }}>
-            {interestingFacts[factKey]}
-          </Text>
-        </CardBody>
-      </Card>
+            <CardBody
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              h="full"
+              py={{ base: 15, sm: 20 }}>
+              <Text
+                fontWeight="bold"
+                fontSize={{ base: 'lg', sm: 'xl', md: '2xl' }}>
+                {interestingFacts[factKey]}
+              </Text>
+            </CardBody>
+          </ChakraBox>
+        </AnimatePresence>
+      </ChakraCard>
     </Flex>
   );
 };

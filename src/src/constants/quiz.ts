@@ -46,3 +46,18 @@ export const SUCCESS_EMOJI = [
   '😎',
   '🤗',
 ];
+
+export const motionDefaults = {
+  initial: {
+    opacity: 0,
+  },
+  whileInView: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+  transition: {
+    duration: 0.4,
+  },
+};

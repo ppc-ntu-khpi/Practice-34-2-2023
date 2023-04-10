@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from 'react';
 import { Box, Flex, useBoolean } from '@chakra-ui/react';
 import { IQuiz } from '../../../@types/questions';
 import { QuestionsService } from '../../../services/QuestionsService';
-import { takeRandomQuestions } from '../../../utils/questions/takeRandomQuestions';
+import { takeRandomElements } from '../../../utils/questions/takeRandomElements';
 import { Introduction } from './Introduction/Introduction';
 import { Summary } from './Summary/Summary';
 import { Questions } from './Questions/Questions';
@@ -12,6 +12,7 @@ import {
   QUESTIONS_LIMIT,
   SUMMARY_COLOR,
 } from '../../../constants/quiz';
+import { AnimatePresence } from 'framer-motion';
 
 export const Quiz: FC = () => {
   const { setColor } = useContext(ColorContext);
@@ -25,17 +26,10 @@ export const Quiz: FC = () => {
     return quizData.currentQuestion?.backgroundPicture;
   };
 
-  // useEffect(() => {
-  //   document.body.style.backgroundImage = `url(${takeCurrentImage()})`;
-  //   document.body.style.backgroundRepeat = 'no-repeat';
-  //   document.body.style.backgroundSize = 'cover';
-  //   //document.body.style.backdropFilter = 'blur(6px)';
-  // }, [hasStarted, quizData.isFinished, quizData.currentQuestion]);
-
   useEffect(() => {
     if (hasStarted) {
       QuestionsService.getAllQuestions().then((questions) => {
-        const randomizedQuestions = takeRandomQuestions(
+        const randomizedQuestions = takeRandomElements(
           questions,
           QUESTIONS_LIMIT,
         );
@@ -84,18 +78,20 @@ export const Quiz: FC = () => {
         minHeight="100vh"
         w="100%"
         py={{ base: '120px', md: 0 }}>
-        {quizData.isFinished ? (
-          <Summary
-            quiz={quizData}
-            setQuizData={setQuizData}
-            setHasStarted={setHasStarted}></Summary>
-        ) : !hasStarted ? (
-          <Introduction startQuiz={setHasStarted.toggle}></Introduction>
-        ) : quizData.questions.length > 0 && quizData.currentQuestion ? (
-          <Questions
-            quizData={quizData}
-            setQuizData={setQuizData}></Questions>
-        ) : null}
+        <AnimatePresence>
+          {quizData.isFinished ? (
+            <Summary
+              quiz={quizData}
+              setQuizData={setQuizData}
+              setHasStarted={setHasStarted}></Summary>
+          ) : !hasStarted ? (
+            <Introduction startQuiz={setHasStarted.toggle}></Introduction>
+          ) : quizData.questions.length > 0 && quizData.currentQuestion ? (
+            <Questions
+              quizData={quizData}
+              setQuizData={setQuizData}></Questions>
+          ) : null}
+        </AnimatePresence>
       </Flex>
     </Box>
   );
