@@ -74,7 +74,7 @@ export const Quiz: FC = () => {
         justifyContent="center"
         backdropFilter="auto"
         backdropBlur="6px"
-        backdropBrightness="90%"
+        backdropBrightness="70%"
         minHeight="100vh"
         w="100%"
         py={{ base: '120px', md: 0 }}>
