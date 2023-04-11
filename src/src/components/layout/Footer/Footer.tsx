@@ -3,7 +3,12 @@ import { Flex, Image, Link, Text } from '@chakra-ui/react';
 import { ColorContext } from '../../context/ColorContext';
 import { hexToRGB } from '../../../utils/color/hexToRGB';
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
-import { EMAIL, motionDefaults, PHONE_NUMBER } from '../../../constants/quiz';
+import {
+  BASE_LINK,
+  EMAIL,
+  motionDefaults,
+  PHONE_NUMBER,
+} from '../../../constants/quiz';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const ChakraFlex = motion(Flex);
@@ -34,7 +39,7 @@ export const Footer: FC = () => {
           alignItems="center">
           <Image
             boxSize="40px"
-            src="/Team_logo.png"
+            src={`${BASE_LINK}/Team_logo.png`}
             alt="Logo"
             mr={{ base: 0, md: 5 }}
           />

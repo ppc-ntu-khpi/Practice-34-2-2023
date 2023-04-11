@@ -1,6 +1,8 @@
 // Configuration
 import { IQuiz } from '../@types/questions';
 
+export const BASE_LINK = '/SDTP-Practice/';
+
 export const MODAL_TIMEOUT = 15;
 export const QUESTIONS_LIMIT = 5;
 

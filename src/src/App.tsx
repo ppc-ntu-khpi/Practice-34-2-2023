@@ -4,10 +4,11 @@ import { Layout } from './components/layout/Layout';
 import { Quiz } from './components/screens/Quiz/Quiz';
 import { ColorProvider } from './components/context/ColorContext';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BASE_LINK } from './constants/quiz';
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: `${BASE_LINK}`,
     element: <Quiz />,
   },
 ]);

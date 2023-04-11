@@ -2,7 +2,11 @@ import { FC, useContext } from 'react';
 import { Button, Flex, Heading, Image, Link, Stack } from '@chakra-ui/react';
 import { ColorContext } from '../../context/ColorContext';
 import { hexToRGB } from '../../../utils/color/hexToRGB';
-import { DEFAULT_HOVER_COLOR, motionDefaults } from '../../../constants/quiz';
+import {
+  BASE_LINK,
+  DEFAULT_HOVER_COLOR,
+  motionDefaults,
+} from '../../../constants/quiz';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const ChakraFlex = motion(Flex);
@@ -38,7 +42,7 @@ export const Header: FC = () => {
           <Flex alignItems="center">
             <Image
               boxSize="40px"
-              src="/PPFK_logo.png"
+              src={`${BASE_LINK}/PPFK_logo.png`}
               alt="Logo"
               mr={5}
             />

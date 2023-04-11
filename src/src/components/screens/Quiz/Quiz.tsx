@@ -8,6 +8,7 @@ import { Summary } from './Summary/Summary';
 import { Questions } from './Questions/Questions';
 import { ColorContext } from '../../context/ColorContext';
 import {
+  BASE_LINK,
   DEFAULT_QUIZ,
   QUESTIONS_LIMIT,
   SUMMARY_COLOR,
@@ -21,8 +22,8 @@ export const Quiz: FC = () => {
   const [quizData, setQuizData] = useState<IQuiz>(DEFAULT_QUIZ);
 
   const takeCurrentImage = () => {
-    if (!hasStarted) return '/introduction.png';
-    if (quizData.isFinished) return '/summary.png';
+    if (!hasStarted) return `${BASE_LINK}/introduction.png`;
+    if (quizData.isFinished) return `${BASE_LINK}/summary.png`;
     return quizData.currentQuestion?.backgroundPicture;
   };
 
