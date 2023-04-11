@@ -22,9 +22,9 @@ export const Quiz: FC = () => {
   const [quizData, setQuizData] = useState<IQuiz>(DEFAULT_QUIZ);
 
   const takeCurrentImage = () => {
-    if (!hasStarted) return `${BASE_LINK}/introduction.png`;
-    if (quizData.isFinished) return `${BASE_LINK}/summary.png`;
-    return quizData.currentQuestion?.backgroundPicture;
+    if (!hasStarted) return `${BASE_LINK}/images/introduction.png`;
+    if (quizData.isFinished) return `${BASE_LINK}/images/summary.png`;
+    return `${BASE_LINK}${quizData.currentQuestion?.backgroundPicture}`;
   };
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export const Quiz: FC = () => {
         alignItems="cnter"
         justifyContent="center"
         backdropFilter="auto"
-        backdropBlur="6px"
+        backdropBlur="9px"
         backdropBrightness="70%"
         minHeight="100vh"
         w="100%"

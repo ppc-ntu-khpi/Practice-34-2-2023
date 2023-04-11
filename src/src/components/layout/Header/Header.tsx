@@ -35,14 +35,14 @@ export const Header: FC = () => {
         ).toString()}, 0.8)`}
         color="white">
         <Link
-          href="/"
+          href={BASE_LINK}
           style={{
             textDecoration: 'none',
           }}>
           <Flex alignItems="center">
             <Image
               boxSize="40px"
-              src={`${BASE_LINK}/PPFK_logo.png`}
+              src={`${BASE_LINK}/images/PPFK_logo.png`}
               alt="Logo"
               mr={5}
             />

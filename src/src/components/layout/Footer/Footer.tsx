@@ -39,7 +39,7 @@ export const Footer: FC = () => {
           alignItems="center">
           <Image
             boxSize="40px"
-            src={`${BASE_LINK}/Team_logo.png`}
+            src={`${BASE_LINK}/images/Team_logo.png`}
             alt="Logo"
             mr={{ base: 0, md: 5 }}
           />
