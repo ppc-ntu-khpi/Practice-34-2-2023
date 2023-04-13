@@ -89,6 +89,7 @@ export const Question: FC<TProps> = ({
                       mr={2}
                     />{' '}
                     <Text
+                      data-testid="questionTitle"
                       fontSize={{ base: 'md', sm: 'lg' }}
                       fontWeight="bold"
                       align="center">

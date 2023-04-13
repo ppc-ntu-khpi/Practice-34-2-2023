@@ -6,8 +6,11 @@ export const BASE_LINK = '/SDTP-Practice/';
 export const MODAL_TIMEOUT = 15;
 export const QUESTIONS_LIMIT = 5;
 
-export const PHONE_NUMBER = '+380993333390';
+export const PHONE_NUMBER = '+380966138774';
 export const EMAIL = 'suportppfkquiz@gmail.com';
+export const TEAM_MODAL_INFO =
+  'Продукт був створений студентами спеціальності "Розробка програмного забезпечення" під час практики з ТРПЗ';
+export const TEAM_INFO = `© ${new Date().getFullYear()} HOHMA TEAM`;
 
 export const DEFAULT_QUIZ: IQuiz = {
   questions: [],

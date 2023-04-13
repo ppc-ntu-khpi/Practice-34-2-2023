@@ -1,5 +1,12 @@
 import { FC, useContext } from 'react';
-import { Flex, Image, Link, Text } from '@chakra-ui/react';
+import {
+  Button,
+  Flex,
+  Image,
+  Link,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { ColorContext } from '../../context/ColorContext';
 import { hexToRGB } from '../../../utils/color/hexToRGB';
 import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
@@ -8,13 +15,16 @@ import {
   EMAIL,
   motionDefaults,
   PHONE_NUMBER,
+  TEAM_INFO,
 } from '../../../constants/quiz';
 import { AnimatePresence, motion } from 'framer-motion';
+import { FooterModal } from './Modal/FooterModal';
 
 const ChakraFlex = motion(Flex);
 
 export const Footer: FC = () => {
   const { color } = useContext(ColorContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <AnimatePresence>
@@ -34,6 +44,10 @@ export const Footer: FC = () => {
           'values-only',
         ).toString()}, 0.8)`}
         color="white">
+        <FooterModal
+          isOpen={isOpen}
+          onClose={onClose}
+        />
         <Flex
           direction={{ base: 'column', md: 'row' }}
           alignItems="center">
@@ -41,17 +55,19 @@ export const Footer: FC = () => {
             boxSize="40px"
             src={`${BASE_LINK}/images/Team_logo.png`}
             alt="Logo"
-            mr={{ base: 0, md: 5 }}
           />
-          <Text
+
+          <Button
             fontSize={{ base: 'xs', sm: 'sm' }}
             textAlign={{ base: 'center', sm: 'left' }}
-            fontWeight="bold">
-            © {new Date().getFullYear()} HOHMA TEAM
-          </Text>
+            fontWeight="bold"
+            onClick={onOpen}
+            backgroundColor="transparent"
+            _hover={{ backgroundColor: 'transparent' }}>
+            {TEAM_INFO}
+          </Button>
         </Flex>
         <Flex
-          //flexDirection={{ base: 'column', md: 'row' }}
           alignItems="center"
           justifyContent={{ base: 'space-evenly', md: 'space-between' }}
           fontWeight="bold">

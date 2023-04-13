@@ -86,7 +86,7 @@ export const Quiz: FC = () => {
               setQuizData={setQuizData}
               setHasStarted={setHasStarted}></Summary>
           ) : !hasStarted ? (
-            <Introduction startQuiz={setHasStarted.toggle}></Introduction>
+            <Introduction startQuiz={setHasStarted.on}></Introduction>
           ) : quizData.questions.length > 0 && quizData.currentQuestion ? (
             <Questions
               quizData={quizData}
